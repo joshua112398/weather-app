@@ -1,3 +1,5 @@
+import './styles/reset.css';
+import './styles/style.css';
 import { reloadUI } from './ui';
 
 async function fetchWeatherData(city) {

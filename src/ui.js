@@ -13,7 +13,7 @@ function reloadUI(weatherObj) {
   weather.textContent = weatherObj.weather;
   date.textContent = 'TBA';
   time.textContent = 'TBA';
-  temp.textContent = `${weatherObj.temp}\u00B0 F`;
+  temp.textContent = `${weatherObj.temp}º F`;
   feelsLike.textContent = weatherObj.feelsLike;
   humidity.textContent = weatherObj.humidity;
   windSpeed.textContent = weatherObj.windSpeed;
