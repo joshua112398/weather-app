@@ -1,5 +1,7 @@
 import './styles/reset.css';
 import './styles/style.css';
+import './styles/weather-icons.min.css';
+import './styles/weather-icons.css';
 import { reloadUI } from './ui';
 
 async function fetchWeatherData(city) {
@@ -24,12 +26,14 @@ function isEmpty(obj) {
 
 function processData(data) {
   const processedData = {};
-  processedData.feelsLike = data.main.feels_like;
+  processedData.feelsLike = Math.round(data.main.feels_like).toString();
   processedData.humidity = data.main.humidity;
-  processedData.temp = data.main.temp;
+  processedData.temp = Math.round(data.main.temp).toString();
   processedData.weather = data.weather[0].main;
-  processedData.windSpeed = data.wind.speed;
+  processedData.weatherID = data.weather[0].id;
+  processedData.windSpeed = Math.round(data.wind.speed).toString();
   processedData.city = data.name;
+  processedData.time = (data.dt + data.timezone) * 1000;
   return processedData;
 }
 
@@ -46,7 +50,7 @@ export {
       const cityValue = cityInput.value;
       const weatherData = await fetchWeatherData(cityValue);
       if (isEmpty(weatherData) === true) {
-        return 'Failed to fetch';
+        return;
       }
       const processedData = processData(weatherData);
       console.log(processedData);
